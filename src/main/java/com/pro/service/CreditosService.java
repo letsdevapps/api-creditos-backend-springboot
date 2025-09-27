@@ -13,8 +13,16 @@ public class CreditosService {
 
 	@Autowired
 	private CreditosRepository creditosRepository;
-	
+
 	public List<Credito> findAll() {
 		return creditosRepository.findAll();
+	}
+
+	public List<Credito> findByNumeroNfse(String numeroNfse) {
+		return creditosRepository.findByNumeroNfse(numeroNfse);
+	}
+
+	public List<Credito> findByNumeroCredito(String numeroCredito) {
+		return creditosRepository.findByNumeroCredito(numeroCredito);
 	}
 }
