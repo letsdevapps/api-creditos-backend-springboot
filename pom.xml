@@ -54,6 +54,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		 <!-- Spring Boot Starter para Kafka -->
+	    <dependency>
+	        <groupId>org.springframework.kafka</groupId>
+	        <artifactId>spring-kafka</artifactId>
+	    </dependency>
+	    <!-- Dependência para o Kafka Client -->
+	    <dependency>
+	        <groupId>org.apache.kafka</groupId>
+	        <artifactId>kafka-clients</artifactId>
+<!--	        <version>4.1.0</version>-->
+	    </dependency>
 	</dependencies>
 
 	<build>
