@@ -11,7 +11,7 @@ public class KafkaConsumer {
     public void receberMensagem(String mensagem, Acknowledgment acknowledgment) {
         System.out.println("Mensagem recebida: kafka Messaging | " + mensagem);
         
-//		application.properties
+//		troquei o application.properties
 //		spring.kafka.consumer.enable-auto-commit=false
 //		spring.kafka.listener.ack-mode=manual
         acknowledgment.acknowledge();

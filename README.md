@@ -66,11 +66,21 @@ Necessario instalar mensageria Kafka a aplicação
 
 	$ wget https://downloads.apache.org/kafka/4.1.0/kafka_2.13-4.1.0.tgz
 
+O wget salva o arquivo em /home/usuario
+
 	$ tar -xvzf kafka_2.13-4.1.0.tgz 
 
 	$ mv kafka_2.13-4.1.0 kafka
 
 	$ cd kafka
+
+Necessario criar o topico backend-springboot-topic para a aplicação
+
+	$ bin/kafka-topics.sh --create --topic backend-springboot-topic --bootstrap-server localhost:9092
+
+	$ bin/kafka-topics.sh --describe --topic backend-springboot-topic --bootstrap-server localhost:9092
+
+Execute os comandos a seguir toda vez que precisar iniciar o Kafka
 
 	$ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
 
@@ -78,8 +88,4 @@ Necessario instalar mensageria Kafka a aplicação
 
 	$ bin/kafka-server-start.sh config/server.properties
 
-Necessario criar o topico backend-springboot-topic para a aplicação
-
-	$ bin/kafka-topics.sh --create --topic backend-springboot-topic --bootstrap-server localhost:9092
-
-	$ bin/kafka-topics.sh --describe --topic backend-springboot-topic --bootstrap-server localhost:9092
+Aguarde o Kafka subir na porta 9092, antes de subir a aplicação
