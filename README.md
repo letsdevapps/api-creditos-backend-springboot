@@ -15,17 +15,25 @@ Necessario instalar MariaDB para a aplicação
 
 	$ sudo systemctl start mariadb
 
-Database:
+	$ sudo mariadb
 
-	creditosdb
+Dentro do prompt:	
+
+	$ CREATE DATABASE creditosdb;
 	
-Username:
+	$ CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'senha';
+	
+	$ GRANT ALL PRIVILEGES ON creditosdb.* TO 'usuario'@'localhost';
+	
+	$ FLUSH PRIVILEGES;
 
-	usuario
+Database: creditosdb<br>
+Username: usuario<br>
+Password: senha<br>
 
-Password:
+Se voce quiser entrar com o usuario criado:
 
-	senha
+	$ sudo mariadb -u usuario -p
 
 O script fornecido para o exercicio seguia o padrão para o Postgre, para o MariaDB necessario alterar a diretiva que indica auto-increment para a chave primaria
 
@@ -80,7 +88,7 @@ Necessario criar o topico backend-springboot-topic para a aplicação
 
 	$ bin/kafka-topics.sh --describe --topic backend-springboot-topic --bootstrap-server localhost:9092
 
-Execute os comandos a seguir toda vez que precisar iniciar o Kafka
+Execute os comandos a seguir toda vez que precisar iniciar o Kafka de dentro da pasta /home/usuario/kafka, pois ela chama o /bin
 
 	$ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
 

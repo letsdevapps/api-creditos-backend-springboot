@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.pro.messaging.KafkaProducer;
 import com.pro.model.Credito;
 import com.pro.service.CreditosService;
+import com.pro.tools.SeedsForTest;
 
 @ExtendWith(SpringExtension.class)
 //@WebMvcTest(CreditosApi.class)
@@ -50,8 +49,8 @@ public class CreditosApiTest {
 
     @Test
     public void testGetCreditos() throws Exception {
-        Credito credito1 = getCredito();
-        Credito credito2 = getCredito2();
+        Credito credito1 = SeedsForTest.getCredito();
+        Credito credito2 = SeedsForTest.getCredito2();
         List<Credito> creditos = Arrays.asList(credito1, credito2);
 
         when(creditosService.findAll()).thenReturn(creditos);
@@ -67,7 +66,7 @@ public class CreditosApiTest {
     @Test
     public void testGetCreditosPorNfse() throws Exception {
         String numeroNfse = "7891011";
-        Credito credito1 = getCredito();
+        Credito credito1 = SeedsForTest.getCredito();
         List<Credito> creditos = Arrays.asList(credito1);
 
         when(creditosService.findByNumeroNfse(numeroNfse)).thenReturn(creditos);
@@ -82,7 +81,7 @@ public class CreditosApiTest {
     @Test
     public void testGetCreditoPorNumCredConstituido() throws Exception {
         String numeroCredito = "123456";
-        Credito credito1 = getCredito();
+        Credito credito1 = SeedsForTest.getCredito();
         List<Credito> creditos = Arrays.asList(credito1);
 
         when(creditosService.findByNumeroCredito(numeroCredito)).thenReturn(creditos);
@@ -90,37 +89,5 @@ public class CreditosApiTest {
         mockMvc.perform(get("/api/creditos/credito/{numeroCredito}", numeroCredito))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].numeroCredito").value("123456"));
-    }
-
-    private Credito getCredito() {
-    	return new Credito(
-    			1L, 
-    			"123456", 
-    			"7891011", 
-    			LocalDate.of(2024, 02, 25), 
-    			BigDecimal.valueOf(1500.75), 
-    			"ISSQN", 
-    			true, 
-    			BigDecimal.valueOf(5.00), 
-    			BigDecimal.valueOf(30000.00), 
-    			BigDecimal.valueOf(5000.00), 
-    			BigDecimal.valueOf(25000.00)
-    			);
-    }
-
-    private Credito getCredito2() {
-    	return new Credito(
-    			2L, 
-    			"789012", 
-    			"7891011", 
-    			LocalDate.of(2024, 02, 26), 
-    			BigDecimal.valueOf(1200.50), 
-    			"ISSQN", 
-    			false, 
-    			BigDecimal.valueOf(4.50), 
-    			BigDecimal.valueOf(25000.00), 
-    			BigDecimal.valueOf(4000.00), 
-    			BigDecimal.valueOf(21000.00)
-    			);
     }
 }
