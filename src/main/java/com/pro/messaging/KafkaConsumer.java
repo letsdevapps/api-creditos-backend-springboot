@@ -10,10 +10,6 @@ public class KafkaConsumer {
     @KafkaListener(topics = "backend-springboot-topic", groupId = "grupo-consumer-1")
     public void receberMensagem(String mensagem, Acknowledgment acknowledgment) {
         System.out.println("Mensagem recebida: kafka Messaging | " + mensagem);
-        
-//		troquei o application.properties
-//		spring.kafka.consumer.enable-auto-commit=false
-//		spring.kafka.listener.ack-mode=manual
         acknowledgment.acknowledge();
     }
 }

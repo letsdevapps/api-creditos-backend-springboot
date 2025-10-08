@@ -26,7 +26,6 @@ import com.pro.service.CreditosService;
 import com.pro.tools.SeedsForTest;
 
 @ExtendWith(SpringExtension.class)
-//@WebMvcTest(CreditosApi.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CreditosApiTest {

@@ -14,7 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE) // Use o banco de dados real, com isso nao precisamos criar um application.properties especifico para teste
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 public class CreditoTest {
 
     @Autowired
